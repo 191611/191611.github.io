@@ -47,16 +47,22 @@ E=\frac{1}{2} \sum_c \sum_j (y_{j,c} - d_{j,c})^2 \tag{3}</script><p>其中， $
 <script type="math/tex; mode=display">
 \frac{\partial {E} } {\partial {x_j} } = \frac{\partial {E} } {\partial {y_j} } \cdot \frac{\mathrm{d} {y_j} } {\mathrm{d} {x_j} } = \frac{\partial {E} } {\partial {y_j} } \cdot y_j (1-y_j)= (y_j - d_j) \cdot y_j (1-y_j) \tag{5}</script><p>由于总目标是修改模型参数 $w$，因此进一步求得输出层参数对误差的影响：</p>
 <script type="math/tex; mode=display">
-\frac{\partial {E} } {\partial {w_ji} } = \frac{\partial {E} } {\partial {x_j} } \cdot \frac{\partial {x_j} } {\paritial{w_ji} } = \frac{\partial {E} } {\partial {x_j} } \cdot y_i = (y_j - d_j) \cdot y_j (1-y_j) \cdot y_j \tag{6}</script><p>但是上述过程只是对输出层求了偏导，对于中间层单元 $i$ 来说，可通过以下公式得到：</p>
+\frac{\partial {E} } {\partial {w_ji} } = \frac{\partial {E} } {\partial {x_j} } \cdot \frac{\partial {x_j} } {\partial{w_ji} } = \frac{\partial {E} } {\partial {x_j} } \cdot y_i = (y_j - d_j) \cdot y_j (1-y_j) \cdot y_j \tag{6}</script><p>但是上述过程只是对输出层求了偏导，对于中间层单元 $i$ 来说，可通过以下公式得到：</p>
 <script type="math/tex; mode=display">
-\frac{\partial {E} } {\partial {y_i} } = \frac{\partial {E} } {\partial {x_j} } \cdot \frac{\partial {x_j} } {\paritial{y_i} } = \frac{\partial {E} } {\partial {x_j} } \cdot w_ji = (y_j - d_j) \cdot y_j (1-y_j) \cdot w_ji \tag{7}</script><p>但是对全连接的多层感知机来说，中间层单元 $i$ 的输出会传播给上层 $j$ 的全部单元，因此得到：</p>
+\frac{\partial {E} } {\partial {y_i} } = \frac{\partial {E} } {\partial {x_j} } \cdot \frac{\partial {x_j} } {\partial{y_i} } = \frac{\partial {E} } {\partial {x_j} } \cdot w_ji = (y_j - d_j) \cdot y_j (1-y_j) \cdot w_ji \tag{7}</script><p>但是对全连接的多层感知机来说，中间层单元 $i$ 的输出会传播给上层 $j$ 的全部单元，因此得到：</p>
 <script type="math/tex; mode=display">
 \frac{\partial {E} } {\partial {y_i} } = \sum_j {\frac{\partial {E} } {\partial {x_j} } \cdot w_ji }  \tag{8}</script><p>通过公式 8 的结果，参考公式 4、5、6、7 的链式法则，进而能够再得到该层参数 $w$ 关于误差的偏导。通过反复进行上述过程，从输出层到输入层反向进行偏导计算步骤，即可求得全部权重关于误差的偏导。</p>
 <p>使用该偏导数的一种方式是当每一条数据完成正向、反向传播后，都对权重进行修改，如公式9：</p>
 <script type="math/tex; mode=display">
 \Delta w = - \frac{\partial {E} } {\partial {w} }  \tag{9}</script><p>另一种方法是对偏导进行叠加，累积所有样本的梯度后再更新网络，也是该论文作者使用的方法。如公式 10 所示，此时需要对 t 每次加 1，$\alpha$ 是一个介于 0 到 1 之间的衰减参数，它决定当前梯度和之前的梯度对参数更新的贡献程度。</p>
 <script type="math/tex; mode=display">
-\Delta w(t) = - \epsilon \frac{\partial {E} } {\partial {w} } + \alpha \Delta w (t-1) \tag{10}</script>]]></content>
+\Delta w(t) = - \epsilon \frac{\partial {E} } {\partial {w} } + \alpha \Delta w (t-1) \tag{10}</script><h3 id="4-3-手动推导"><a href="#4-3-手动推导" class="headerlink" title="4.3 手动推导"></a>4.3 手动推导</h3><p>以输入层，1 个隐藏层，输出层，输入 3 维输出 1 维的两层感知机为例，对反向传播算法的计算过程进行推导，与示例代码对应。</p>
+<center>
+<img src="https://raw.githubusercontent.com/191611/images/main/img/%E5%9B%BE%E7%89%87%203.png" width="90%" />
+</center>
+
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>BP 算法通过计算损失函数相对于权重的梯度来调整网络参数，从而最小化预测误差。这使得训练多层神经网络变得可行。由于 BP 网络再多层叠加后，能够有效地处理非线性问题，因此还能够解决传统线性模型难以处理的问题。</p>
+]]></content>
       <categories>
         <category>learning</category>
         <category>论文解读</category>
