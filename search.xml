@@ -3,14 +3,14 @@
   <entry>
     <title>论文解读：《Learning representations by back-propagating errors》</title>
     <url>/2025/01/22/3080401553/</url>
-    <content><![CDATA[<h1 id="Learning-representations-by-back-propagating-errors"><a href="#Learning-representations-by-back-propagating-errors" class="headerlink" title="Learning representations by back-propagating errors"></a>Learning representations by back-propagating errors</h1><h2 id="通过误差反向传播学习表示"><a href="#通过误差反向传播学习表示" class="headerlink" title="通过误差反向传播学习表示"></a>通过误差反向传播学习表示</h2><blockquote>
+    <content><![CDATA[<h1 id="Learning-representations-by-back-propagating-errors"><a href="#Learning-representations-by-back-propagating-errors" class="headerlink" title="Learning representations by back-propagating errors"></a>Learning representations by back-propagating errors</h1><h2 id="通过误差反向传播学习表示"><a href="#通过误差反向传播学习表示" class="headerlink" title="通过误差反向传播学习表示"></a>通过误差反向传播学习表示</h2><center><img src="https://raw.githubusercontent.com/191611/images/main/img/cover.png" width="75%" /></center>
+
+<blockquote>
 <p>原论文作者：</p>
 <p>David E. Rumelhart Institute for Cognitive Science, University of California, USA</p>
 <p>Ronald J. Williams Institute for Cognitive Science, University of California, USA</p>
 <p>Geoffrey E. Hinton Department of Computer Science, Carnegie-Mellon University, USA</p>
 </blockquote>
-<center><img src="https://raw.githubusercontent.com/191611/images/main/img/cover.png" width="75%" /></center>
-
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>论文提出了一种新的学习过程：反向传播（Back-Propagation，BP）。BP 算法的主要过程是通过误差反向传播不断地调整模型的权值，从而最小化输出和真实值之间的差异。通过调整模型权重，模型的隐藏层单元能够表示任务数据中的特征，并捕捉数据的规律。</p>
 <h2 id="2-背景"><a href="#2-背景" class="headerlink" title="2. 背景"></a>2. 背景</h2><h3 id="2-1-神经元模型的提出"><a href="#2-1-神经元模型的提出" class="headerlink" title="2.1 神经元模型的提出"></a>2.1 神经元模型的提出</h3><p>神经元模型是沃伦·麦卡洛克（Warren McCulloch）和沃尔特·皮兹（Walter Pitts）所提出的。该模型可简单描述为：将二进制输入值加起来，并在其和大于一个阈值时输出 1，否则输出 0，可用来模拟基本的或/与/非逻辑函数。</p>
 <h3 id="2-2-感知机的提出"><a href="#2-2-感知机的提出" class="headerlink" title="2.2 感知机的提出"></a>2.2 感知机的提出</h3><p>感知机由 Frank Rosenblatt 在 1957 年提出。单层感知机是一个最简单的线性二分类模型，只有输入层和输出层，并不能产生新的特征。对于感知机和神经网络的区别不能仅仅从网络上区别。在上世纪，感知机的输入是一组二进制输入值（从仿生的角度来说就是附近的神经元给的电信号，0 代表没有信号、未放电；1 代表激活，放电），将每个输入值乘以一个连续值权重（每个附近神经元的突触强度），并设立一个阈值（激活函数），如果这些加权输入值的和超过这个阈值，就输出 1，否则输出 0。（可以发现，输入层的形式并不是现在我们常用的“特征”，而是更接近 One-Hot 编码，是二进制的）。</p>
@@ -64,7 +64,7 @@ E=\frac{1}{2} \sum_c \sum_j (y_{j,c} - d_{j,c})^2 \tag{3}</script><p>其中， $
 <h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>BP 算法通过计算损失函数相对于权重的梯度来调整网络参数，从而最小化预测误差。这使得训练多层神经网络变得可行。由于 BP 网络再多层叠加后，能够有效地处理非线性问题，因此还能够解决传统线性模型难以处理的问题。</p>
 ]]></content>
       <categories>
-        <category>learning</category>
+        <category>学习</category>
         <category>论文解读</category>
       </categories>
       <tags>
