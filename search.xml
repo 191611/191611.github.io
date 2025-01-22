@@ -56,7 +56,7 @@ E=\frac{1}{2} \sum_c \sum_j (y_{j,c} - d_{j,c})^2 \tag{3}</script><p>其中， $
 <script type="math/tex; mode=display">
 \Delta w = - \frac{\partial {E} } {\partial {w} }  \tag{9}</script><p>另一种方法是对偏导进行叠加，累积所有样本的梯度后再更新网络，也是该论文作者使用的方法。如公式 10 所示，此时需要对 t 每次加 1，$\alpha$ 是一个介于 0 到 1 之间的衰减参数，它决定当前梯度和之前的梯度对参数更新的贡献程度。</p>
 <script type="math/tex; mode=display">
-\Delta w(t) = - \epsilon \frac{\partial {E} } {\partial {w} } + \alpha \Delta w (t-1) \tag{10}</script><h3 id="4-3-手动推导"><a href="#4-3-手动推导" class="headerlink" title="4.3 手动推导"></a>4.3 手动推导</h3><p>以输入层，1 个隐藏层，输出层，输入 3 维输出 1 维的两层感知机为例，对反向传播算法的计算过程进行推导，与示例代码对应。</p>
+\Delta w(t) = - \varepsilon \frac{\partial {E} } {\partial {w} } + \alpha \Delta w (t-1) \tag{10}</script><h3 id="4-3-手动推导"><a href="#4-3-手动推导" class="headerlink" title="4.3 手动推导"></a>4.3 手动推导</h3><p>以输入层，1 个隐藏层，输出层，输入 3 维输出 1 维的两层感知机为例，对反向传播算法的计算过程进行推导，与示例代码对应。</p>
 <center>
 <img src="https://raw.githubusercontent.com/191611/images/main/img/%E5%9B%BE%E7%89%87%203.png" width="90%" />
 </center>
