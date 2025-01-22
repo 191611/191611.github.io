@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2025/01/22/1243066710/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>论文解读：《Learning representations by back-propagating errors》</title>
     <url>/2025/01/22/3080401553/</url>
     <content><![CDATA[<h1 id="Learning-representations-by-back-propagating-errors"><a href="#Learning-representations-by-back-propagating-errors" class="headerlink" title="Learning representations by back-propagating errors"></a>Learning representations by back-propagating errors</h1><h2 id="通过误差反向传播学习表示"><a href="#通过误差反向传播学习表示" class="headerlink" title="通过误差反向传播学习表示"></a>通过误差反向传播学习表示</h2><blockquote>
@@ -47,6 +33,11 @@ $ $
 </center>
 
 <p>如上图，为 $j$ 层的某一神经元示例，该单元的输入用黑色字体 $x_j$ 表示，$x_j$ 是上一层输出 $y_i$ 的线性函数（加权求和），$x_j$ 由公式 1 计算得到。</p>
+<script type="math/tex; mode=display">
+x_j=\sum_i y_i w_{ji} \tag{1}</script><p>神经元 $j$ 在收到输入 $x<em>j$ 后，与自身阈值 $\theta$ 判断是否输出，该阈值 $\theta$ 也可理解为 $w</em>{bias}$ 的相反数，即：$-w_{bias}$ ，代表单元 $j$ 的额外固定输入 1 所对应的权重。因此神经元 $j$ 的输入可直接用 $x_j$ 表示。</p>
+<p>对输入 $x_j$，还需经过非线性激活函数的处理。在该论文中使用 $\mathrm{sigmoid}$，因此神经元 $j$ 最终的输出 $y_j$ 由公式 2 给出。</p>
+<script type="math/tex; mode=display">
+y_j=\frac{1}{1+e^{-x_j}} \tag{2}</script><p>到此完成单个神经元的正向传播计算过程，将若干个神经元按层级关系排列并相连，即可得到多层感知机网络。此外，在多层感知机中，可以包含多个中间层（隐藏层），同层连接或者从高到低的连接是禁止的，但是连接可以跳过若干中间层，由底层直接向更高层传播。</p>
 ]]></content>
       <categories>
         <category>learning</category>
