@@ -18,4 +18,23 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>论文解读：《Learning representations by back-propagating errors》</title>
+    <url>/2025/01/22/3080401553/</url>
+    <content><![CDATA[<h1 id="Learning-representations-by-back-propagating-errors"><a href="#Learning-representations-by-back-propagating-errors" class="headerlink" title="Learning representations by back-propagating errors"></a>Learning representations by back-propagating errors</h1><h2 id="通过误差反向传播学习表示"><a href="#通过误差反向传播学习表示" class="headerlink" title="通过误差反向传播学习表示"></a>通过误差反向传播学习表示</h2><blockquote>
+<p>原论文作者：</p>
+<p>David E. Rumelhart Institute for Cognitive Science, University of California, USA</p>
+<p>Ronald J. Williams Institute for Cognitive Science, University of California, USA</p>
+<p>Geoffrey E. Hinton Department of Computer Science, Carnegie-Mellon University, USA</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>learning</category>
+        <category>论文解读</category>
+      </categories>
+      <tags>
+        <tag>Hinton</tag>
+        <tag>BP算法</tag>
+      </tags>
+  </entry>
 </search>
