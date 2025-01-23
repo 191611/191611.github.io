@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Moore开发版开荒流程</title>
+    <url>/2025/01/23/3991319540/</url>
+    <content><![CDATA[<!-- 
+首行缩进：&ensp;&emsp; 
+
+-->
+]]></content>
+  </entry>
+  <entry>
     <title>论文解读：《Learning representations by back-propagating errors》</title>
     <url>/2025/01/22/3080401553/</url>
     <content><![CDATA[<h1 id="Learning-representations-by-back-propagating-errors"><a href="#Learning-representations-by-back-propagating-errors" class="headerlink" title="Learning representations by back-propagating errors"></a>Learning representations by back-propagating errors</h1><h2 id="通过误差反向传播学习表示"><a href="#通过误差反向传播学习表示" class="headerlink" title="通过误差反向传播学习表示"></a>通过误差反向传播学习表示</h2><center><img src="https://raw.githubusercontent.com/191611/images/main/img/cover.png" width="50%" /></center>
