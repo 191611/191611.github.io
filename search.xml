@@ -134,4 +134,23 @@ width="50%" />
         <tag>GPT</tag>
       </tags>
   </entry>
+  <entry>
+    <title>AI-Agent中文翻译</title>
+    <url>/2025/02/26/1976214198/</url>
+    <content><![CDATA[<!-- 
+首行缩进：&ensp;&emsp; 
+
+-->
+<object data="/files/pdf/AI-Agent中文翻译.pdf" type="application/pdf" width="100%" height="877px"></object>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>论文翻译</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+      </tags>
+  </entry>
 </search>
