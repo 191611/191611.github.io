@@ -73,7 +73,28 @@ E=\frac{1}{2} \sum_c \sum_j (y_{j,c} - d_{j,c})^2 \tag{3}</script><p>其中， $
       </tags>
   </entry>
   <entry>
-    <title>LLM学习过程记录——以 GPT-nano 为例</title>
+    <title>论文翻译：AI-Agent中文翻译</title>
+    <url>/2025/02/26/1976214198/</url>
+    <content><![CDATA[<!-- 
+首行缩进：&ensp;&emsp; 
+
+-->
+<h1 id="AI-Agent-翻译"><a href="#AI-Agent-翻译" class="headerlink" title="AI-Agent 翻译"></a>AI-Agent 翻译</h1><p>此版本是我在原生latex的基础上，使用GPT翻译并逐行校对，再latex编译成pdf的，为便于理解，保留了大量英文专有名词</p>
+<p>错漏之处还请大家在评论区指出，谢谢 ~</p>
+<object data="/files/pdf/AI-Agent中文翻译.pdf" type="application/pdf" width="100%" height="877px"></object>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>论文翻译</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模型学习：LLM学习过程记录——以 GPT-nano 为例</title>
     <url>/2025/02/26/3952906644/</url>
     <content><![CDATA[<!-- 
 首行缩进：&ensp;&emsp; 
@@ -127,30 +148,11 @@ width="50%" />
 ]]></content>
       <categories>
         <category>学习</category>
-        <category>模型细节学习</category>
+        <category>模型学习</category>
       </categories>
       <tags>
         <tag>LLM</tag>
         <tag>GPT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI-Agent中文翻译</title>
-    <url>/2025/02/26/1976214198/</url>
-    <content><![CDATA[<!-- 
-首行缩进：&ensp;&emsp; 
-
--->
-<object data="/files/pdf/AI-Agent中文翻译.pdf" type="application/pdf" width="100%" height="877px"></object>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>论文翻译</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-        <tag>AI</tag>
-        <tag>Agent</tag>
       </tags>
   </entry>
 </search>
