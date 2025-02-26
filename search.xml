@@ -72,4 +72,66 @@ E=\frac{1}{2} \sum_c \sum_j (y_{j,c} - d_{j,c})^2 \tag{3}</script><p>其中， $
         <tag>BP算法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>LLM学习过程记录——以 GPT-nano 为例</title>
+    <url>/2025/02/26/3952906644/</url>
+    <content><![CDATA[<!-- 
+首行缩进：&ensp;&emsp; 
+
+-->
+<h1 id="LLM学习过程记录——以-GPT-nano-为例"><a href="#LLM学习过程记录——以-GPT-nano-为例" class="headerlink" title="LLM学习过程记录——以 GPT-nano 为例"></a>LLM学习过程记录——以 GPT-nano 为例</h1><blockquote>
+<p>可视化网址：<a href="https://bbycroft.net/llm">https://bbycroft.net/llm</a></p>
+<p>GPT-nano 参数量为 85,584</p>
+</blockquote>
+<h2 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h2><h3 id="1-LayerNorm-中为什么要加入-alpha-和-beta"><a href="#1-LayerNorm-中为什么要加入-alpha-和-beta" class="headerlink" title="1. LayerNorm 中为什么要加入 $\alpha$ 和 $\beta$"></a>1. LayerNorm 中为什么要加入 $\alpha$ 和 $\beta$</h3><p>LayerNorm的公式为：</p>
+<script type="math/tex; mode=display">y_i = \alpha \hat{x}_i + \beta = \alpha \left( \frac{x_i - \mu}{\sigma} \right) + \beta</script><p>其中：</p>
+<ul>
+<li>$x$  是输入向量（或批量数据），</li>
+<li>$\mu$  是该输入的均值，</li>
+<li>$\sigma$  是该输入的标准差，</li>
+<li>$\alpha$  和  $\beta$  是可学习的参数，</li>
+<li>$y$  是经过归一化和调整后的输出。</li>
+</ul>
+<h4 id="alpha-和-beta-的作用"><a href="#alpha-和-beta-的作用" class="headerlink" title="$\alpha$  和  $\beta$ 的作用"></a>$\alpha$  和  $\beta$ 的作用</h4><p>灵活性：标准化操作（通过减去均值和除以标准差）使得每一层的输入数据在分布上更加一致，减少了训练过程中的不稳定性。但归一化后的数据可能不总是适合模型的训练，因此，α 和 β 提供了恢复灵活性的手段，使得模型可以自适应地调整归一化后的数据的尺度和偏移，从而更好地拟合数据。</p>
+<p>恢复信息：标准化之后，数据的均值被设置为 0，方差为 1。这对许多类型的神经网络来说可能是一个合理的起点，但一些复杂的任务可能需要特定的分布，α 和 β 让模型有能力将归一化后的数据调整为更适合任务的形式。</p>
+<ul>
+<li><p>$\alpha$ 控制每个特征输出的 尺度（放大或缩小），它帮助恢复原始数据的变换幅度。</p>
+</li>
+<li><p>$\beta$ 控制每个特征输出的 偏移，它帮助恢复原始数据的均值。</p>
+</li>
+</ul>
+<h3 id="2-为什么除以-sqrt-d-k-能防止影响后续的-Softmax"><a href="#2-为什么除以-sqrt-d-k-能防止影响后续的-Softmax" class="headerlink" title="2. 为什么除以 $\sqrt{d_k}$ 能防止影响后续的 Softmax"></a>2. 为什么除以 $\sqrt{d_k}$ 能防止影响后续的 Softmax</h3><p>Softmax函数的作用是将一个向量转换为概率分布，公式为：</p>
+<script type="math/tex; mode=display">\text{Softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}</script><p>Softmax用于将点积值转换为权重，分配给不同的值。问题出现在：</p>
+<ul>
+<li><p>如果点积值过大，Softmax 的输出将变得非常尖锐（即其中一个元素的值接近 1，其他值接近 0），这会使得网络对某些特定的查询和键对之间的关系过于敏感，从而影响训练的稳定性。</p>
+</li>
+<li><p>这种过于尖锐的分布可能导致梯度消失问题，因为大部分注意力权重会集中在少数几个位置，导致其他位置的权重几乎为零，从而使得模型的学习过程非常不稳定。</p>
+</li>
+</ul>
+<h3 id="3-为什么在-Attention-和-MLP-之前，都要加入-Norm-呢？"><a href="#3-为什么在-Attention-和-MLP-之前，都要加入-Norm-呢？" class="headerlink" title="3. 为什么在 Attention 和 MLP 之前，都要加入 Norm 呢？"></a>3. 为什么在 Attention 和 MLP 之前，都要加入 Norm 呢？</h3><ul>
+<li><p>一定程度上防止梯度消失或爆炸</p>
+</li>
+<li><p>在训练深度神经网络时，每一层的输入分布会随着网络的训练过程而发生变化，这种变化被称为<strong>内部协变量偏移</strong>（Internal Covariate Shift）。也就是说，随着网络参数的更新，每一层的输入数据的分布可能会发生很大变化。这使得模型在训练时更难以收敛，因为每一层都必须适应不断变化的输入分布。</p>
+</li>
+<li><p>通过在 Attention 和 MLP 层之间加入 Layer Normalization，我们可以<strong>标准化</strong>每一层的输入（使其均值为 0，方差为 1），从而减少输入数据分布的变化，使得后续层接收到的数据更加稳定。这样，训练时每一层的输入都不会因为前一层参数的更新而发生剧烈变化，从而提升了训练的稳定性。</p>
+</li>
+</ul>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><h3 id="1-multi-head-的多个头的结果，是拼接在一起的，而不是叠加"><a href="#1-multi-head-的多个头的结果，是拼接在一起的，而不是叠加" class="headerlink" title="1. multi-head 的多个头的结果，是拼接在一起的，而不是叠加"></a>1. multi-head 的多个头的结果，是拼接在一起的，而不是叠加</h3><p>对GPT来说，head（a=16）内的向量长度正好等于 $\frac{C}{num-heads}$ ，从而确保了将它们堆叠在一起时，能够得到原始长度 C。</p>
+<h3 id="2-GPT-nano-中的-MLP-用的是-GELU-激活函数"><a href="#2-GPT-nano-中的-MLP-用的是-GELU-激活函数" class="headerlink" title="2. GPT-nano 中的 MLP 用的是 GELU 激活函数"></a>2. GPT-nano 中的 MLP 用的是 GELU 激活函数</h3><p>相比 RELU，GELU 在原点附近更平滑</p>
+<center>
+<img src="https://raw.githubusercontent.com/191611/images/main/img/GLUE激活函数.png" 
+width="50%" />
+
+图 1 GLUE 激活函数曲线图
+</center>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>模型细节学习</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>GPT</tag>
+      </tags>
+  </entry>
 </search>
